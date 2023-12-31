@@ -491,6 +491,20 @@ namespace SVG {
                                    " " + std::to_string(y);
         }        
 
+        template<typename T>
+        inline void horizontal(T length) {
+            /** Adds a horizontal line. */
+            if (auto found = this->attr.find("d"); found != this->attr.end())
+                found->second += " h " + std::to_string(length);
+        }        
+
+        template<typename T>
+        inline void vertical(T length) {
+            /** Adds a vertical line. */
+            if (auto found = this->attr.find("d"); found != this->attr.end())
+                found->second += " v " + std::to_string(length);
+        }        
+
         inline void to_origin() {
             /** Draw a line back to the origin */
             this->line_to(x_start, y_start);
