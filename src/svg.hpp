@@ -476,6 +476,21 @@ namespace SVG {
             this->line_to(coord.first, coord.second);
         }
 
+
+        template<typename T>
+        inline void move_to(T x, T y) {
+            /** Moves the current position to (x, y)
+             *  If line has not been initialized by setting a starting point,
+             *  then start() will be called with (x, y) as arguments
+             */
+
+            if (this->attr.find("d") == this->attr.end())
+                start(x, y);
+            else
+                this->attr["d"] += " M " + std::to_string(x) +
+                                   " " + std::to_string(y);
+        }        
+
         inline void to_origin() {
             /** Draw a line back to the origin */
             this->line_to(x_start, y_start);
